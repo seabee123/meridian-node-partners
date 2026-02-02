@@ -9,19 +9,19 @@ import { ResourcesPage } from './pages/ResourcesPage'
 import { ContactPage } from './pages/ContactPage'
 
 function App() {
-    return (
-          <Layout>
-                <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/products" element={<ProductsPage />} />
-                        <Route path="/order" element={<OrderPage />} />
-                        <Route path="/how-it-works" element={<HowItWorksPage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/resources" element={<ResourcesPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                </Routes>Routes>
-          </Layout>Layout>
-        )
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/order" element={<OrderPage />} />
+        <Route path="/how-it-works" element={<HowItWorksPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+    </Layout>
+  )
 }
 
-export default App</Layout>
+export default App
