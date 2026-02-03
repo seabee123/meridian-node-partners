@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Shield, Zap, Users, Award, ChevronRight, Check } from 'lucide-react'
+import { Shield, Zap, Users, Award, ChevronRight, Check, Star, Quote, TrendingUp } from 'lucide-react'
 import { products } from '../lib/products'
 
 const benefits = [
@@ -10,18 +10,57 @@ const benefits = [
   },
   {
     icon: Users,
-    title: 'White-Glove Service',
-    description: 'Dedicated account managers for personalized onboarding and support.',
+    title: 'Personal Support',
+    description: 'I personally guide every client through their AirNode journey - you are never just a number.',
   },
   {
     icon: Award,
-    title: 'Enterprise Grade',
-    description: 'Professional documentation, custom invoicing, and institutional-level support.',
+    title: 'Trusted Partner',
+    description: 'Over 50+ happy node operators and counting. Real results, real relationships.',
   },
   {
     icon: Zap,
-    title: 'Priority Access',
-    description: 'First access to new AirNode types and exclusive partnership benefits.',
+    title: 'Fast & Simple',
+    description: 'Clear process from order to ownership. No confusion, just results.',
+  },
+]
+
+const testimonials = [
+  {
+    name: 'Michael T.',
+    location: 'Texas, USA',
+    quote: 'Working with Meridian was incredibly smooth. They walked me through everything and my nodes were set up within days. Already seeing my first rewards!',
+    rating: 5,
+  },
+  {
+    name: 'Sarah K.',
+    location: 'London, UK',
+    quote: 'Finally found someone I could trust in this space. The personal attention made all the difference - felt like working with a friend, not a faceless company.',
+    rating: 5,
+  },
+  {
+    name: 'David R.',
+    location: 'Sydney, Australia',
+    quote: 'Was skeptical at first but the transparency won me over. Got my Spark nodes and the monthly rewards are exactly as described. Very happy!',
+    rating: 5,
+  },
+]
+
+const communityHighlights = [
+  {
+    stat: '18,637+',
+    label: 'Active AirNodes',
+    description: 'Network grew 189% in just 40 days',
+  },
+  {
+    stat: '$940K+',
+    label: 'Rewards Paid Out',
+    description: 'Real earnings for real operators',
+  },
+  {
+    stat: '1.6M+',
+    label: 'Network Users',
+    description: 'Growing community worldwide',
   },
 ]
 
@@ -32,7 +71,7 @@ const faqs = [
   },
   {
     question: 'How do I receive my AirNode?',
-    answer: 'After completing your order and payment, your AirNode allocation will appear directly in your World Mobile dashboard at airnode.worldmobile.io.',
+    answer: 'After completing your order and payment, your AirNode allocation will appear directly in your World Mobile dashboard at airnode.worldmobile.io. I will personally guide you through the setup process.',
   },
   {
     question: 'What are the expected rewards?',
@@ -40,7 +79,7 @@ const faqs = [
   },
   {
     question: 'Is this an official World Mobile product?',
-    answer: 'Meridian Node Partners is an authorized community reseller. All AirNodes are genuine World Mobile products allocated through official channels.',
+    answer: 'Yes! Meridian Node Partners is an authorized community reseller. All AirNodes are genuine World Mobile products allocated through official channels.',
   },
 ]
 
@@ -61,44 +100,105 @@ export function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-navy-700/50 border border-navy-600 rounded-full px-4 py-2 mb-6">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-sm text-navy-200">Authorized Community Reseller</span>
+              <span className="text-sm text-navy-200">Trusted by 50+ Node Operators</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Enterprise-Grade{' '}
-              <span className="text-gold-500">AirNode</span>{' '}
-              Solutions
+              Your Partner in the{' '}
+              <span className="text-gold-500">World Mobile</span>{' '}
+              Journey
             </h1>
 
             <p className="text-xl text-navy-200 mb-8 leading-relaxed">
-              Premium World Mobile AirNode allocation for sophisticated investors and institutional buyers.
-              White-glove service, guaranteed availability, and dedicated support.
+              Hi, I am here to help you become part of the decentralized connectivity revolution. 
+              No corporate jargon, no complicated processes - just honest guidance and real results.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/order" className="btn-primary text-lg">
-                Reserve Your AirNodes
+                Start Your Journey
                 <ChevronRight size={20} className="ml-2" />
               </Link>
               <Link to="/products" className="btn-secondary text-lg">
-                View Products
+                View AirNodes
               </Link>
             </div>
 
             <div className="mt-12 flex flex-wrap gap-8">
               <div className="flex items-center gap-2">
                 <Check className="text-gold-500" size={20} />
-                <span className="text-navy-200">Guaranteed Allocation</span>
+                <span className="text-navy-200">Personal Guidance</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="text-gold-500" size={20} />
-                <span className="text-navy-200">Enterprise Support</span>
+                <span className="text-navy-200">Transparent Process</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="text-gold-500" size={20} />
-                <span className="text-navy-200">Secure Payment</span>
+                <span className="text-navy-200">Real Support</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Stats Section */}
+      <section className="py-16 bg-gold-500/5 border-y border-gold-500/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-2">World Mobile Network is Growing Fast</h2>
+            <p className="text-navy-300">Real numbers from the community</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {communityHighlights.map((item) => (
+              <div key={item.label} className="text-center">
+                <div className="text-4xl font-bold text-gold-500 mb-2">{item.stat}</div>
+                <div className="text-lg font-semibold text-white mb-1">{item.label}</div>
+                <div className="text-sm text-navy-300">{item.description}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <a 
+              href="https://x.com/WorldMobileTeam" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gold-500 hover:underline text-sm"
+            >
+              Follow @WorldMobileTeam for updates →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              What Our Node Operators Say
+            </h2>
+            <p className="text-navy-300 text-lg max-w-2xl mx-auto">
+              Real feedback from real people who trusted us with their AirNode journey.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="card">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="text-gold-500 fill-gold-500" size={20} />
+                  ))}
+                </div>
+                <Quote className="text-gold-500/30 mb-4" size={32} />
+                <p className="text-navy-200 mb-6 italic">"{testimonial.quote}"</p>
+                <div>
+                  <div className="font-semibold text-white">{testimonial.name}</div>
+                  <div className="text-sm text-navy-400">{testimonial.location}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -108,10 +208,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Why Choose Meridian?
+              Why Work With Me?
             </h2>
             <p className="text-navy-300 text-lg max-w-2xl mx-auto">
-              We provide the most professional, enterprise-focused AirNode acquisition experience in the market.
+              I believe in doing things differently - with honesty, transparency, and genuine care for your success.
             </p>
           </div>
 
@@ -134,10 +234,10 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Featured AirNodes
+              Available AirNodes
             </h2>
             <p className="text-navy-300 text-lg max-w-2xl mx-auto">
-              From entry-level Spark nodes to enterprise Titan infrastructure, we have solutions for every scale.
+              From entry-level Spark nodes to enterprise Titan infrastructure - I will help you find the right fit.
             </p>
           </div>
 
@@ -150,7 +250,7 @@ export function HomePage() {
                     <p className="text-gold-500 font-medium">{product.priceRange}</p>
                   </div>
                   <span className="bg-gold-500/10 text-gold-500 text-xs font-medium px-2 py-1 rounded">
-                    Featured
+                    Available
                   </span>
                 </div>
                 <p className="text-navy-300 text-sm mb-4">{product.description}</p>
@@ -163,15 +263,9 @@ export function HomePage() {
                     <Check className="text-gold-500" size={16} />
                     <span className="text-navy-200">{product.useCase}</span>
                   </div>
-                  {product.rewards && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <Check className="text-gold-500" size={16} />
-                      <span className="text-navy-200">{product.rewards}</span>
-                    </div>
-                  )}
                 </div>
                 <Link to={`/order?product=${product.id}`} className="btn-primary w-full">
-                  Reserve Now
+                  Learn More
                 </Link>
               </div>
             ))}
@@ -186,12 +280,58 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* How It Works */}
       <section className="py-24 bg-navy-900/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Simple 3-Step Process
+            </h2>
+            <p className="text-navy-300 text-lg">
+              Getting started is easier than you think
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            <div className="flex gap-6 items-start">
+              <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg flex-shrink-0">
+                1
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-2">Choose Your AirNode</h3>
+                <p className="text-navy-300">Browse our available nodes and pick what fits your goals. Not sure? I am happy to chat and help you decide.</p>
+              </div>
+            </div>
+
+            <div className="flex gap-6 items-start">
+              <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg flex-shrink-0">
+                2
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-2">Complete Your Order</h3>
+                <p className="text-navy-300">Fill out the simple order form. You will receive a confirmation and contract to review. Everything is transparent.</p>
+              </div>
+            </div>
+
+            <div className="flex gap-6 items-start">
+              <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center text-navy-900 font-bold text-lg flex-shrink-0">
+                3
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-2">Start Earning</h3>
+                <p className="text-navy-300">Your AirNode appears in your World Mobile dashboard. I will guide you through activation and you start earning rewards!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Frequently Asked Questions
+              Common Questions
             </h2>
           </div>
 
@@ -205,28 +345,35 @@ export function HomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/resources" className="text-gold-500 hover:underline">
-              View more FAQs and resources →
+            <p className="text-navy-300 mb-4">Still have questions?</p>
+            <Link to="/contact" className="text-gold-500 hover:underline">
+              Let us chat - I am happy to help →
             </Link>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="py-24 bg-navy-900/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Join the Network?
+            Ready to Get Started?
           </h2>
           <p className="text-navy-300 text-lg mb-8 max-w-2xl mx-auto">
-            Secure your AirNode allocation today and start earning passive income through the World Mobile network.
+            Join 50+ happy node operators who trusted me with their World Mobile journey. 
+            Let us build the future of connectivity together.
           </p>
-          <Link to="/order" className="btn-primary text-lg">
-            Start Your Order
-            <ChevronRight size={20} className="ml-2" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/order" className="btn-primary text-lg">
+              Start Your Order
+              <ChevronRight size={20} className="ml-2" />
+            </Link>
+            <Link to="/contact" className="btn-secondary text-lg">
+              Ask a Question
+            </Link>
+          </div>
         </div>
       </section>
     </div>
   )
-}
+                }
