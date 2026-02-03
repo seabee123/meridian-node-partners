@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+mport { Link } from 'react-router-dom'
 import { Check, ExternalLink } from 'lucide-react'
 import { products } from '../lib/products'
 
