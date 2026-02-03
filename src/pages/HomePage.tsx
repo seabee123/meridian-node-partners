@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Shield, Zap, Users, Award, ChevronRight, Check, Star, Quote, TrendingUp } from 'lucide-react'
+import { Shield, Zap, Users, Award, ChevronRight, Check, Star, Quote, TrendingUp, Globe, Building2, Coins } from 'lucide-react'
 import { products } from '../lib/products'
 
 const benefits = [
@@ -64,6 +64,24 @@ const communityHighlights = [
   },
 ]
 
+const rwaFeatures = [
+  {
+    icon: Building2,
+    title: 'Own Real Infrastructure',
+    description: 'AirNodes are physical telecommunications infrastructure that you own outright - not just a token or digital promise.',
+  },
+  {
+    icon: Globe,
+    title: 'Global Network Access',
+    description: 'Become part of a decentralized connectivity network reaching underserved communities across Africa and beyond.',
+  },
+  {
+    icon: Coins,
+    title: 'Tangible Yield Generation',
+    description: 'Your infrastructure generates real yield from actual network usage - a true Real World Asset with measurable returns.',
+  },
+]
+
 const faqs = [
   {
     question: 'What is an AirNode?',
@@ -81,6 +99,10 @@ const faqs = [
     question: 'Is this an official World Mobile product?',
     answer: 'Yes! Meridian Node Partners is an authorized community reseller. All AirNodes are genuine World Mobile products allocated through official channels.',
   },
+  {
+    question: 'What makes AirNodes a Real World Asset (RWA)?',
+    answer: 'AirNodes represent physical telecommunications infrastructure. Unlike purely digital assets, your investment is backed by tangible hardware that generates real utility and revenue through network usage.',
+  },
 ]
 
 export function HomePage() {
@@ -95,28 +117,28 @@ export function HomePage() {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/20 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl" />
         </div>
-
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-navy-700/50 border border-navy-600 rounded-full px-4 py-2 mb-6">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-sm text-navy-200">Trusted by 50+ Node Operators</span>
+              <span className="text-sm text-navy-200">Real World Assets • Infrastructure Access</span>
             </div>
-
+            
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Your Partner in the{' '}
-              <span className="text-gold-500">World Mobile</span>{' '}
-              Journey
+              Own Real{' '}
+              <span className="text-gold-500">Telecom Infrastructure</span>{' '}
+              That Earns For You
             </h1>
-
+            
             <p className="text-xl text-navy-200 mb-8 leading-relaxed">
-              Hi, I am here to help you become part of the decentralized connectivity revolution. 
-              No corporate jargon, no complicated processes - just honest guidance and real results.
+              Invest in AirNodes - the Real World Assets powering World Mobile's decentralized network. 
+              Physical infrastructure, tangible returns, genuine ownership. I will guide you every step of the way.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/order" className="btn-primary text-lg">
-                Start Your Journey
+                Get Infrastructure Access
                 <ChevronRight size={20} className="ml-2" />
               </Link>
               <Link to="/products" className="btn-secondary text-lg">
@@ -127,15 +149,81 @@ export function HomePage() {
             <div className="mt-12 flex flex-wrap gap-8">
               <div className="flex items-center gap-2">
                 <Check className="text-gold-500" size={20} />
-                <span className="text-navy-200">Personal Guidance</span>
+                <span className="text-navy-200">Real World Assets</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="text-gold-500" size={20} />
-                <span className="text-navy-200">Transparent Process</span>
+                <span className="text-navy-200">Physical Infrastructure</span>
               </div>
               <div className="flex items-center gap-2">
                 <Check className="text-gold-500" size={20} />
-                <span className="text-navy-200">Real Support</span>
+                <span className="text-navy-200">Monthly Yields</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* RWA Feature Section */}
+      <section className="py-20 bg-gradient-to-b from-navy-900 to-navy-800 border-y border-gold-500/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-gold-500 font-semibold text-sm uppercase tracking-wider">Real World Assets</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mt-4 mb-4">
+              Infrastructure Investment, Not Just Crypto
+            </h2>
+            <p className="text-navy-300 text-lg max-w-2xl mx-auto">
+              AirNodes represent a new class of investment - physical telecommunications infrastructure 
+              that generates real yield from actual network usage around the world.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {rwaFeatures.map((feature) => (
+              <div key={feature.title} className="card bg-navy-800/50 border-gold-500/20 hover:border-gold-500/40 transition-all duration-300">
+                <div className="w-14 h-14 bg-gold-500/10 rounded-xl flex items-center justify-center mb-6">
+                  <feature.icon className="text-gold-500" size={28} />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                <p className="text-navy-300">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 bg-navy-700/30 rounded-2xl p-8 border border-navy-600">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Why RWAs Matter</h3>
+                <p className="text-navy-300 mb-4">
+                  Unlike speculative tokens, Real World Assets are backed by physical infrastructure with intrinsic value. 
+                  Your AirNode is a piece of the telecommunications revolution - hardware that provides connectivity 
+                  to communities worldwide.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3 text-navy-200">
+                    <Check className="text-gold-500 flex-shrink-0" size={18} />
+                    Tangible asset you own outright
+                  </li>
+                  <li className="flex items-center gap-3 text-navy-200">
+                    <Check className="text-gold-500 flex-shrink-0" size={18} />
+                    Revenue from real network usage
+                  </li>
+                  <li className="flex items-center gap-3 text-navy-200">
+                    <Check className="text-gold-500 flex-shrink-0" size={18} />
+                    Part of licensed telecom infrastructure
+                  </li>
+                  <li className="flex items-center gap-3 text-navy-200">
+                    <Check className="text-gold-500 flex-shrink-0" size={18} />
+                    Growing network = growing potential
+                  </li>
+                </ul>
+              </div>
+              <div className="text-center lg:text-right">
+                <div className="inline-block bg-navy-800 rounded-xl p-6 border border-gold-500/30">
+                  <div className="text-5xl font-bold text-gold-500 mb-2">$940K+</div>
+                  <div className="text-white font-semibold mb-1">Rewards Distributed</div>
+                  <div className="text-navy-400 text-sm">Real earnings to real infrastructure owners</div>
+                </div>
               </div>
             </div>
           </div>
@@ -288,7 +376,7 @@ export function HomePage() {
               Simple 3-Step Process
             </h2>
             <p className="text-navy-300 text-lg">
-              Getting started is easier than you think
+              Getting your infrastructure access is easier than you think
             </p>
           </div>
 
@@ -299,7 +387,7 @@ export function HomePage() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-white mb-2">Choose Your AirNode</h3>
-                <p className="text-navy-300">Browse our available nodes and pick what fits your goals. Not sure? I am happy to chat and help you decide.</p>
+                <p className="text-navy-300">Browse our available RWA infrastructure and pick what fits your goals. Not sure? I am happy to chat and help you decide.</p>
               </div>
             </div>
 
@@ -318,8 +406,8 @@ export function HomePage() {
                 3
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-white mb-2">Start Earning</h3>
-                <p className="text-navy-300">Your AirNode appears in your World Mobile dashboard. I will guide you through activation and you start earning rewards!</p>
+                <h3 className="text-xl font-semibold text-white mb-2">Own Infrastructure, Earn Rewards</h3>
+                <p className="text-navy-300">Your AirNode appears in your World Mobile dashboard. You now own real telecom infrastructure generating real returns!</p>
               </div>
             </div>
           </div>
@@ -357,15 +445,15 @@ export function HomePage() {
       <section className="py-24 bg-navy-900/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ready to Get Started?
+            Ready to Own Real Infrastructure?
           </h2>
           <p className="text-navy-300 text-lg mb-8 max-w-2xl mx-auto">
-            Join 50+ happy node operators who trusted me with their World Mobile journey. 
-            Let us build the future of connectivity together.
+            Join 50+ infrastructure owners who trusted me with their World Mobile journey. 
+            Real assets, real returns, real support.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/order" className="btn-primary text-lg">
-              Start Your Order
+              Get Infrastructure Access
               <ChevronRight size={20} className="ml-2" />
             </Link>
             <Link to="/contact" className="btn-secondary text-lg">
@@ -376,4 +464,4 @@ export function HomePage() {
       </section>
     </div>
   )
-                }
+}
