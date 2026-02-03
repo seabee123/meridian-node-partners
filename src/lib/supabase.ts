@@ -23,6 +23,33 @@ export interface Order {
   status?: string
 }
 
+// Send order notification and contract emails via Edge Function
+async function sendOrderEmails(order: Order): Promise<void> {
+  try {
+    const response = await fetch(
+      `${supabaseUrl}/functions/v1/send-order-emails`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${supabaseAnonKey}`,
+        },
+        body: JSON.stringify(order),
+      }
+    )
+    
+    if (!response.ok) {
+      console.error('Failed to send order emails:', await response.text())
+    } else {
+      const result = await response.json()
+      console.log('Order emails sent:', result)
+    }
+  } catch (error) {
+    console.error('Error sending order emails:', error)
+    // Don't throw - email failure shouldn't block order submission
+  }
+}
+
 export async function submitOrder(order: Omit<Order, 'id' | 'created_at' | 'status'>) {
   const { data, error } = await supabase
     .from('orders')
@@ -31,5 +58,11 @@ export async function submitOrder(order: Omit<Order, 'id' | 'created_at' | 'stat
     .single()
 
   if (error) throw error
+  
+  // Send notification and contract emails after successful order
+  if (data) {
+    await sendOrderEmails(data as Order)
+  }
+  
   return data
 }
