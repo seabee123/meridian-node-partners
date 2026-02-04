@@ -1,9 +1,9 @@
-import { useState } from 'react';import {
-  ShoppingCart, Globe, Zap, Link as LinkIcon, Radio, Triangle,
-  Building, ChevronRight, Plus, Check, X, Smartphone, Wifi,
-  DollarSign, Landmark, Shield, Users, Award, Clock
+import { useState } from 'react';
+import {
+    Globe, Zap, Radio, Building, ChevronRight, Check,
+    DollarSign, Shield, Users, Award, Clock,
+    ChevronDown, ChevronUp, Star, Mail, MessageCircle, CheckCircle, Menu
 } from 'lucide-react';
-
 // Product data - Meridian Node Partners inventory
 const products = [
   {
