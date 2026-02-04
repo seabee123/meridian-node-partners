@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import {
+import { useState } from 'react';import {
   ShoppingCart, Globe, Zap, Link as LinkIcon, Radio, Triangle,
   Building, ChevronRight, Plus, Check, X, Smartphone, Wifi,
   DollarSign, Landmark, Shield, Users, Award, Clock
