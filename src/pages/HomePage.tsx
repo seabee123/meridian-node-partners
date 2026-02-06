@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   Globe, Zap, Radio, Building, ChevronRight, Check,
   Shield, Users, Award, Clock, RefreshCw, Headphones, TrendingUp,
-  ChevronDown, ChevronUp, Star, Mail, MessageCircle, CheckCircle, Menu,
+  ChevronDown, ChevronUp, Star, CheckCircle, Menu,
   ShoppingCart, Plus, Minus, AlertCircle
 } from 'lucide-react';
 
