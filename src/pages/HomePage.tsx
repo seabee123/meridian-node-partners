@@ -3,7 +3,7 @@ import {
   Globe, Zap, Radio, Building, ChevronRight, Check,
   Shield, Users, Award, Clock, RefreshCw, Headphones, TrendingUp,
   ChevronDown, ChevronUp, Star, CheckCircle, Menu,
-  ShoppingCart, Plus, Minus, AlertCircle
+  ShoppingCart, Plus, Minus, AlertCircle, ExternalLink, Info
 } from 'lucide-react';
 
 // Product data - Meridian Node Partners inventory (Enterprise pricing)
@@ -423,10 +423,31 @@ export function HomePage() {
             </p>
           </div>
 
-          <div className="bg-wm-yellow/10 border border-wm-yellow/30 rounded-xl p-4 mb-8 text-center">
+          <div className="bg-wm-yellow/10 border border-wm-yellow/30 rounded-xl p-4 mb-4 text-center">
             <p className="text-wm-yellow font-semibold">
               💰 Minimum Order: $18,000 | All purchases include buyback eligibility
             </p>
+          </div>
+
+          {/* Account Setup Info Box */}
+          <div className="bg-blue-900/30 border border-blue-500/30 rounded-xl p-4 mb-8">
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-blue-300 font-semibold mb-2">Important: World Mobile Account Required</p>
+                <p className="text-blue-200/80 text-sm mb-2">
+                  Before placing your order, you must have a World Mobile AirNode account. Your nodes will be registered to this account.
+                </p>
+                <div className="text-sm text-blue-200/70">
+                  <p className="font-medium mb-1">How to set up your account:</p>
+                  <ol className="list-decimal list-inside space-y-1 ml-2">
+                    <li>Visit <a href="https://airnode.worldmobile.net/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline inline-flex items-center gap-1">airnode.worldmobile.net <ExternalLink className="w-3 h-3" /></a></li>
+                    <li>Click the user account button at the top right corner</li>
+                    <li>Fill in the requested information to complete your profile</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
           </div>
 
           {orderSubmitted ? (
@@ -560,14 +581,20 @@ export function HomePage() {
                         className="px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-wm-yellow focus:outline-none"
                       />
                     </div>
-                    <input
-                      type="email"
-                      required
-                      placeholder="Email Address"
-                      value={orderForm.email}
-                      onChange={(e) => setOrderForm({ ...orderForm, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-wm-yellow focus:outline-none"
-                    />
+                    <div>
+                      <input
+                        type="email"
+                        required
+                        placeholder="Email Address"
+                        value={orderForm.email}
+                        onChange={(e) => setOrderForm({ ...orderForm, email: e.target.value })}
+                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:border-wm-yellow focus:outline-none"
+                      />
+                      <p className="mt-2 text-xs text-amber-400 flex items-start gap-1.5">
+                        <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+                        <span>Use the same email address registered with your World Mobile AirNode account at airnode.worldmobile.net</span>
+                      </p>
+                    </div>
                     <input
                       type="tel"
                       placeholder="Phone (Optional)"
@@ -653,6 +680,10 @@ export function HomePage() {
           <div className="space-y-4">
             {[
               {
+                q: 'How do I set up my World Mobile AirNode account?',
+                a: "Setting up your account is easy: 1) Visit airnode.worldmobile.net 2) Click the user account button located at the top right corner of the page to log in 3) Fill in the requested information to complete your user profile. Make sure to use the same email address when placing your order with us."
+              },
+              {
                 q: 'How does the buyback guarantee work?',
                 a: "It's simple - if you ever want to exit your investment, we'll buy back your nodes. Contact us, agree on the buyback terms, and we'll handle the rest. No other partner offers this level of exit liquidity."
               },
@@ -663,6 +694,10 @@ export function HomePage() {
               {
                 q: 'How do I pay for my order?',
                 a: 'After you submit your order, our team will contact you within 24 hours to confirm details and arrange payment. We accept bank transfers, credit cards, and select cryptocurrency payments.'
+              },
+              {
+                q: 'Why must I use my World Mobile account email?',
+                a: 'Your AirNodes will be registered to your World Mobile account at airnode.worldmobile.net. Using the same email ensures seamless node registration and allows you to manage your nodes through the official World Mobile platform.'
               },
               {
                 q: 'Are you official World Mobile?',
@@ -735,8 +770,9 @@ export function HomePage() {
             <div>
               <h4 className="font-semibold text-white mb-4">Resources</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="https://worldmobile.io" target="_blank" rel="noopener noreferrer" className="hover:text-wm-yellow transition-colors">World Mobile Official ↗</a></li>
-                <li><a href="https://worldmobile.io/help" target="_blank" rel="noopener noreferrer" className="hover:text-wm-yellow transition-colors">WM Support ↗</a></li>
+                <li><a href="https://worldmobile.io" target="_blank" rel="noopener noreferrer" className="hover:text-wm-yellow transition-colors flex items-center gap-1">World Mobile Official <ExternalLink className="w-3 h-3" /></a></li>
+                <li><a href="https://airnode.worldmobile.net" target="_blank" rel="noopener noreferrer" className="hover:text-wm-yellow transition-colors flex items-center gap-1">AirNode Portal <ExternalLink className="w-3 h-3" /></a></li>
+                <li><a href="https://worldmobile.io/help" target="_blank" rel="noopener noreferrer" className="hover:text-wm-yellow transition-colors flex items-center gap-1">WM Support <ExternalLink className="w-3 h-3" /></a></li>
               </ul>
             </div>
           </div>
