@@ -11,7 +11,7 @@ const products = [
   {
     id: 'spark',
     name: 'Spark',
-    description: 'Connectivity for residential and business premises. Private and public access point. Ideal for bulk deployments.',
+    description: 'Connectivity for residential and business premises. Private and public access point. Ideal for bulk deployments. Expected returns: ~$1.70/month per unit.',
     price: 80,
     minQuantity: 225, // 225 × $80 = $18,000 minimum
     icon: Zap,
@@ -21,17 +21,17 @@ const products = [
   {
     id: 'portal-180',
     name: 'Portal 180',
-    description: 'Extended range connectivity with 180-degree coverage. Perfect for targeted area deployments.',
+    description: 'Extended range connectivity with 180-degree coverage. Perfect for targeted area deployments. Expected returns: ~$350/month per unit.',
     price: 9000,
     minQuantity: 2, // 2 × $9,000 = $18,000 minimum
     icon: Radio,
     featured: false,
-    inStock: true
+    inStock: false
   },
   {
     id: 'portal-360',
     name: 'Portal 360',
-    description: 'Full 360-degree coverage for maximum connectivity in open spaces. Our most popular enterprise choice.',
+    description: 'Full 360-degree coverage for maximum connectivity in open spaces. Our most popular enterprise choice. Expected returns: ~$800/month per unit.',
     price: 18000,
     minQuantity: 1, // 1 × $18,000 = $18,000 minimum
     icon: Globe,
@@ -41,12 +41,12 @@ const products = [
   {
     id: 'titan',
     name: 'Titan',
-    description: 'Enterprise-grade AirNode for large-scale deployments and maximum coverage. Ultimate network expansion.',
+    description: 'Enterprise-grade AirNode for large-scale deployments and maximum coverage. Ultimate network expansion. Expected returns: ~$800-2,200/month per unit.',
     price: 105000,
     minQuantity: 1, // 1 × $105,000 = $105,000 minimum
     icon: Building,
     featured: true,
-    inStock: true
+    inStock: false
   }
 ];
 
@@ -377,19 +377,10 @@ export function HomePage() {
 
           {/* Comparison Box */}
           <div className="bg-gray-900 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-6 text-center">Meridian vs. Other Options</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+            <h3 className="text-2xl font-bold mb-6 text-center">Meridian vs. Other Partners</h3>
+            <div className="grid md:grid-cols-2 gap-6">
               <div className="text-center p-6 bg-gray-800 rounded-xl">
-                <h4 className="font-bold text-lg mb-4">Official Store</h4>
-                <ul className="text-gray-400 text-sm space-y-2">
-                  <li>❌ No buyback option</li>
-                  <li>❌ Standard support queue</li>
-                  <li>❌ Fixed retail pricing</li>
-                  <li>✓ Authentic hardware</li>
-                </ul>
-              </div>
-              <div className="text-center p-6 bg-gray-800 rounded-xl">
-                <h4 className="font-bold text-lg mb-4">WM Alliance</h4>
+                <h4 className="font-bold text-lg mb-4">Other Partners</h4>
                 <ul className="text-gray-400 text-sm space-y-2">
                   <li>❌ No buyback option</li>
                   <li>❌ Variable support</li>
