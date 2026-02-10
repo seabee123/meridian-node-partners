@@ -1,15 +1,4 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-interface OrderItem {
-  name: string;
-  quantity: number;
-  price: number;
-  total: number;
-}
-
 interface OrderData {
   firstName: string;
   lastName: string;
@@ -38,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Send admin notification email
     const { data: adminData, error: adminError } = await resend.emails.send({
-      from: 'Meridian Node Partners <orders@meridiannodepartners.com>',
+      from: 'Meridian Node Partners <onboarding@resend.dev>',
       to: ['privateman0011@gmail.com'],
       subject: `New AirNode Order from ${orderData.firstName} ${orderData.lastName}`,
       html: `
@@ -64,7 +53,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Send customer confirmation email
     const { error: customerError } = await resend.emails.send({
-      from: 'Meridian Node Partners <orders@meridiannodepartners.com>',
+      from: 'Meridian Node Partners <onboarding@resend.dev>',
       to: [orderData.email],
       subject: 'Your AirNode Order Confirmation - Meridian Node Partners',
       html: `
@@ -83,41 +72,3 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               <p style="font-size: 18px; font-weight: bold; color: #333;">
                 Total: <span style="color: #F5B800;">$${orderData.total.toLocaleString()}</span>
               </p>
-            </div>
-            <div style="background-color: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 20px 0;">
-              <p style="color: #2e7d32; margin: 0;">
-                <strong>Buyback Guarantee Eligible</strong><br>
-                Your order qualifies for our exclusive buyback program.
-              </p>
-            </div>
-            <h3 style="color: #333;">What Happens Next?</h3>
-            <ol style="color: #666;">
-              <li>Our team will review your order</li>
-              <li>We will contact you within 24 hours to confirm details</li>
-              <li>Payment instructions will be provided</li>
-              <li>Your AirNodes will be shipped with priority handling</li>
-            </ol>
-            <p style="color: #666;">
-              If you have any questions, reply to this email or contact us at orders@meridiannodepartners.com
-            </p>
-          </div>
-          <div style="background-color: #333; padding: 20px; text-align: center;">
-            <p style="color: #999; margin: 0; font-size: 12px;">
-              Meridian Node Partners - Enterprise AirNode Reseller<br>
-              Buyback Guarantee Available - Priority Support
-            </p>
-          </div>
-        </div>
-      `,
-    });
-
-    if (customerError) {
-      console.error('Customer email error:', customerError);
-    }
-
-    return res.status(200).json({ success: true, messageId: adminData?.id });
-  } catch (error) {
-    console.error('Server error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
-  }
-}
