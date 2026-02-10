@@ -31,12 +31,12 @@ const products = [
   {
     id: 'portal-360',
     name: 'Portal 360',
-    description: 'Full 360-degree coverage for maximum connectivity in open spaces. Our most popular enterprise choice. Expected returns: ~$800/month per unit.',
+    description: 'Full 360-degree coverage for maximum connectivity in open spaces. Our most popular enterprise choice. Expected returns: ~$350/month per unit.',
     price: 18000,
     minQuantity: 1, // 1 × $18,000 = $18,000 minimum
     icon: Globe,
     featured: true,
-    inStock: true
+    inStock: false
   },
   {
     id: 'titan',
@@ -72,6 +72,8 @@ export function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [orderSubmitted, setOrderSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Order state
   const [quantities, setQuantities] = useState<Record<string, number>>({
@@ -135,11 +137,47 @@ export function HomePage() {
     }
   };
 
-  const handleOrderSubmit = (e: React.FormEvent) => {
+  const handleOrderSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!meetsMinimum) return;
-    // TODO: Connect to Supabase/payment processor
-    setOrderSubmitted(true);
+    if (!meetsMinimum || !hasItems) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Build order items
+      const items = products
+        .filter(p => quantities[p.id] > 0)
+        .map(p => ({
+          name: p.name,
+          quantity: quantities[p.id],
+          price: p.price,
+          total: quantities[p.id] * p.price
+        }));
+
+      const response = await fetch('/api/send-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...orderForm,
+          items,
+          total: orderTotal
+        })
+      });
+
+      if (!response.ok) throw new Error('Failed to send order');
+
+      setSubmitStatus('success');
+      setOrderSubmitted(true);
+      // Reset form
+      setQuantities({ 'spark': 0, 'portal-180': 0, 'portal-360': 0, 'titan': 0 });
+      setOrderForm({ firstName: '', lastName: '', email: '', phone: '', company: '' });
+    } catch (error) {
+      console.error('Order submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const formatPrice = (price: number) => {
@@ -602,19 +640,31 @@ export function HomePage() {
                     />
                     <button
                       type="submit"
-                      disabled={!meetsMinimum || !hasItems}
+                      disabled={!meetsMinimum || !hasItems || isSubmitting}
                       className={`w-full py-4 rounded-lg font-bold text-lg transition-colors flex items-center justify-center gap-2 ${
-                        meetsMinimum && hasItems
+                        meetsMinimum && hasItems && !isSubmitting
                           ? 'bg-wm-yellow text-black hover:bg-wm-yellow-hover'
                           : 'bg-gray-600 text-gray-400 cursor-not-allowed'
                       }`}
                     >
                       <ShoppingCart className="w-5 h-5" />
-                      Submit Order
+                      {isSubmitting ? 'Sending...' : 'Submit Order'}
                     </button>
                     <p className="text-xs text-gray-500 text-center">
                       Our team will contact you to confirm and arrange payment.
                     </p>
+
+                    {submitStatus === 'success' && (
+                      <div className="mt-4 p-4 bg-green-900/50 border border-green-500 rounded-lg text-green-400 text-center">
+                        Order submitted successfully! We'll contact you shortly to confirm and arrange payment.
+                      </div>
+                    )}
+
+                    {submitStatus === 'error' && (
+                      <div className="mt-4 p-4 bg-red-900/50 border border-red-500 rounded-lg text-red-400 text-center">
+                        Failed to submit order. Please try again or contact us directly.
+                      </div>
+                    )}
                   </form>
                 </div>
               </div>
