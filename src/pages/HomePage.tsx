@@ -11,7 +11,7 @@ const products = [
   {
     id: 'spark',
     name: 'Spark',
-    description: 'Connectivity for residential and business premises. Private and public access point. Ideal for bulk deployments. Expected returns: ~$1.70/month per unit.',
+    description: 'Connectivity for residential and business premises. Private and public access point. Ideal for bulk deployments. Expected returns: ~$1.50-1.70/month per unit.',
     price: 80,
     minQuantity: 225, // 225 × $80 = $18,000 minimum
     icon: Zap,
@@ -41,12 +41,12 @@ const products = [
   {
     id: 'titan',
     name: 'Titan',
-    description: 'Enterprise-grade AirNode for large-scale deployments and maximum coverage. Ultimate network expansion. Expected returns: ~$800-2,200/month per unit.',
+    description: 'Enterprise-grade AirNode for large-scale deployments and maximum coverage. Ultimate network expansion. Expected returns: ~$3,500/month per unit.',
     price: 105000,
     minQuantity: 1, // 1 × $105,000 = $105,000 minimum
     icon: Building,
     featured: true,
-    inStock: false
+    inStock: true
   }
 ];
 
@@ -507,40 +507,52 @@ export function HomePage() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                            <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-xs font-medium rounded-full">
-                              Buyback Eligible
-                            </span>
+                            {product.inStock ? (
+                              <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-xs font-medium rounded-full">
+                                Buyback Eligible
+                              </span>
+                            ) : (
+                              <span className="px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-medium rounded-full">
+                                Out of Stock
+                              </span>
+                            )}
                           </div>
                           <p className="text-gray-400 text-sm mb-2">{product.description}</p>
-                          <div className="flex items-center gap-4">
-                            <span className="text-wm-yellow font-bold text-xl">{formatPrice(product.price)}</span>
-                            <span className="text-gray-500 text-sm">/ unit</span>
-                            <span className="text-gray-500 text-sm">• Min: {product.minQuantity} units</span>
-                          </div>
+                          {product.inStock ? (
+                            <div className="flex items-center gap-4">
+                              <span className="text-wm-yellow font-bold text-xl">{formatPrice(product.price)}</span>
+                              <span className="text-gray-500 text-sm">/ unit</span>
+                              <span className="text-gray-500 text-sm">• Min: {product.minQuantity} units</span>
+                            </div>
+                          ) : (
+                            <span className="text-red-400 font-semibold">Out of Stock</span>
+                          )}
                         </div>
                       </div>
 
-                      {/* Quantity Controls */}
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={() => updateQuantity(product.id, -1)}
-                          className="w-10 h-10 rounded-lg bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white transition-colors"
-                        >
-                          <Minus className="w-5 h-5" />
-                        </button>
-                        <input
-                          type="number"
-                          value={quantities[product.id]}
-                          onChange={(e) => setQuantity(product.id, parseInt(e.target.value) || 0)}
-                          className="w-20 h-10 bg-gray-700 border border-gray-600 rounded-lg text-white text-center font-semibold focus:border-wm-yellow focus:outline-none"
-                        />
-                        <button
-                          onClick={() => updateQuantity(product.id, 1)}
-                          className="w-10 h-10 rounded-lg bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white transition-colors"
-                        >
-                          <Plus className="w-5 h-5" />
-                        </button>
-                      </div>
+                      {/* Quantity Controls - Only show for in-stock items */}
+                      {product.inStock && (
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => updateQuantity(product.id, -1)}
+                            className="w-10 h-10 rounded-lg bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white transition-colors"
+                          >
+                            <Minus className="w-5 h-5" />
+                          </button>
+                          <input
+                            type="number"
+                            value={quantities[product.id]}
+                            onChange={(e) => setQuantity(product.id, parseInt(e.target.value) || 0)}
+                            className="w-20 h-10 bg-gray-700 border border-gray-600 rounded-lg text-white text-center font-semibold focus:border-wm-yellow focus:outline-none"
+                          />
+                          <button
+                            onClick={() => updateQuantity(product.id, 1)}
+                            className="w-10 h-10 rounded-lg bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white transition-colors"
+                          >
+                            <Plus className="w-5 h-5" />
+                          </button>
+                        </div>
+                      )}
                     </div>
 
                     {quantities[product.id] > 0 && (
